@@ -1,5 +1,5 @@
 ## XVMConfigEnNativePatcher
 
-Библиотека для работы с XVM-конфигом из Inno Setup:
+Р‘РёР±Р»РёРѕС‚РµРєР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ XVM-РєРѕРЅС„РёРіРѕРј РёР· Inno Setup:
 
   procedure **XCTextReplace**(FileName, OldText, NewText: PChar; allReplace: Boolean) external 'XCTextReplace@files:XVMConfigEnNativePatcher.dll';
