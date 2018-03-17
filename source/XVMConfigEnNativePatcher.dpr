@@ -3,7 +3,7 @@ library XVMConfigEnNativePatcher;
 uses
   FastShareMem, SysUtils;
 
-procedure XCTextReplace(FileName, OldText, NewText: PChar; allReplace: Boolean);
+procedure XCTextReplace(FileName, OldText, NewText: PAnsiChar; allReplace: Boolean); stdcall;
 var f: File;
     j,k,n: Integer;
     b, b1: Boolean;
