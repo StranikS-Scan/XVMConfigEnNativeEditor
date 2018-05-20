@@ -81,7 +81,7 @@ end;
 {FileName - Full name of the xc-file
  OldText, NewText - Replaceable text and replacement text
  AllReplace - Replace all occurrences
- SkipLines - Ñomma separated list with line numbers, meaning that it should be skipped}
+ SkipLines - Comma separated list with line numbers, meaning that it should be skipped}
 function XCTextReplaceExt(FileName, OldText, NewText: PAnsiChar; SkipLineNumbers: PAnsiChar; AllReplace: Boolean): Boolean; stdcall;
 var F: File;
     i,j,k,m, OldLinesCount, NewLinesCount: Integer;
@@ -102,7 +102,6 @@ if Length(Trim(SkipLineNumbers))=0 then
 if not FileExists(FileName) then Exit;
 if (Length(OldText)=0)or(Length(NewText)=0) then Exit;
 //------------------- Parse skiped line numbers -------------------
-SetLength(SkipedLinesIndexes, 0);
 S:='';
 for i:=0 to Length(SkipLineNumbers)-1 do //SkipedLinesIndexes: (X,X,X)
  begin
@@ -318,6 +317,18 @@ if Length(Buffer)>0 then
   end;
  SetLength(Buffer, 0);
  Buffer:=nil;
+ SetLength(OldPatternSimple, 0);
+ OldPatternSimple:=nil;
+ SetLength(OldPatternReal, 0);
+ OldPatternReal:=nil;
+ SetLength(NewPatternReal, 0);
+ NewPatternReal:=nil;
+ SetLength(OldPatternExt, 0);
+ OldPatternExt:=nil;
+ SetLength(NewPatternExt, 0);
+ NewPatternExt:=nil;
+ SetLength(SkipPatternExt, 0);
+ SkipPatternExt:=nil;
  end;
 except
 end;
