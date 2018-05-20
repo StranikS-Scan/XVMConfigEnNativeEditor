@@ -52,7 +52,7 @@ DebugSourceDirs=
 UsePackages=0
 [Parameters]
 RunParams=
-HostApplication=C:\Program Files (x86)\Borland\Delphi6\Projects\XVMConfigEnNativePatcher\Test.exe
+HostApplication=C:\Program Files (x86)\Borland\Delphi6\Projects\XVMConfigEnNativePatcher\test\Test.exe
 Launcher=
 UseLauncher=0
 DebugCWD=

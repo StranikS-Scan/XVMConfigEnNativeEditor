@@ -1,21 +1,15 @@
-/**
- * The boot configs file. To use - rename to xvm.xc.
- *
- * Reference format: ${"path to config file":"."}
- * // - comment out the line (will not be used)
- *
- * ---------------------------------------------------------------
- * Fichier de lancement de la configuration XVM.
- * Pour l'utiliser, renommer ce fichier en 'xvm.xc'.
- *
- * Format à utiliser : ${"chemin vers fichier de config":"."}
- * // - commente la ligne (elle ne sera pas utilisée)
- *
- * --------------------------------------------------------------- 
- * Пример загрузочного файла конфигов. Для использования переименовать в xvm.xc.
- *
- * Формат ссылки: ${"путь к файлу конфига":"."}
- * // - закомментировать строку (использоваться не будет)
+﻿/**
+ * General parameters for the battle interface.
+ * Общие параметры боевого интерфейса.
  */
-
-${"default/@xvm.xc":"."}
+{
+  "battle": {
+    // false - Disable tank icon mirroring (good for alternative icons).
+    // false - отключить зеркалирования иконок танков
+    //         (полезно для альтернативных иконок).
+    "mirroredVehicleIcons": true,
+    // false - Disable pop-up panel at the bottom after death.
+    // false - отключить всплывающую внизу панель после смерти.
+    "showPostmortemTips": true,
+            }
+}
