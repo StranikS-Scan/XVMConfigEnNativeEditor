@@ -23,7 +23,7 @@ NewText:='    // false - Disable tank icon mirroring (good for alternative icons
          '    // false - отключить зеркалирования иконок танков'#13#10
          '    //         (полезно для альтернативных иконок).'#13#10
          '    "mirroredVehicleIcons": false,';
-SkipLines:='[2,3]';
+SkipLines:='[2,3]'; //The skipped line can not be the first
 XCTextReplaceExt(FileName, OldText, NewText, SkipLines, False);
 
 OldText:='    // false - Disable pop-up panel at the bottom after death.'#13#10
@@ -32,6 +32,6 @@ OldText:='    // false - Disable pop-up panel at the bottom after death.'#13#10
 NewText:='    // false - Disable pop-up panel at the bottom after death.'#13#10
          ''#13#10
          '    "showPostmortemTips": false';
-SkipLines:='[2]';
+SkipLines:='[2]'; //The skipped line can not be the first
 XCTextReplaceExt(FileName, OldText, NewText, SkipLines, False);
 ```
