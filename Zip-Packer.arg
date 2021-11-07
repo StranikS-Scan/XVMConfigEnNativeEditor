@@ -1,4 +1,4 @@
 #-------------------- Zip-Packer parameters --------------------
 
 exe  = "C:\Program Files\7-Zip\7z.exe"
-arg  = "a -tzip -mx9 XVMConfigEnNativePatcher_1.0.3.zip XVMConfigEnNativePatcher.dll"
+arg  = "a -tzip -mx9 zip\XVMConfigEnNativeEditor_1.0.4.zip .\source\XVMConfigEnNativeEditor.dll"

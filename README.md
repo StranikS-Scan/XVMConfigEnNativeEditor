@@ -1,11 +1,11 @@
-## XVMConfigEnNativePatcher
+## XVMConfigEnNativeEditor
 
 Library for working with **XVM-config** from **"InnoSetup"**:
 
 ### Text replacement functions
 
 ```
-function XCTextReplace(FileName, OldText, NewText: PAnsiChar; AllReplace: Boolean): Boolean; external 'XCTextReplace@files:XVMConfigEnNativePatcher.dll stdcall';
+function XCTextReplace(FileName, OldText, NewText: PAnsiChar; AllReplace: Boolean): Boolean; external 'XCTextReplace@files:XVMConfigEnNativeEditor.dll stdcall';
 
 OldText:='battle';
 NewText:='bottle';
@@ -13,7 +13,7 @@ XCTextReplace(FileName, OldText, NewText, True);
 ```
 
 ```
-function XCTextReplaceExt(FileName, OldText, NewText: PAnsiChar; SkipLineNumbers: PAnsiChar; AllReplace: Boolean): Boolean; external 'XCTextReplaceExt@files:XVMConfigEnNativePatcher.dll stdcall';
+function XCTextReplaceExt(FileName, OldText, NewText: PAnsiChar; SkipLineNumbers: PAnsiChar; AllReplace: Boolean): Boolean; external 'XCTextReplaceExt@files:XVMConfigEnNativeEditor.dll stdcall';
 
 OldText:='    // false - Disable tank icon mirroring (good for alternative icons).'#13#10
          '    // false - отключить зеркалирования иконок танков'#13#10

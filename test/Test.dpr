@@ -5,8 +5,8 @@ program Test;
 uses
   Windows, SysUtils, Classes;
 
-function XCTextReplace(FileName, OldText, NewText: PAnsiChar; AllReplace: Boolean): Boolean; stdcall; external '..\source\XVMConfigEnNativePatcher.dll';
-function XCTextReplaceExt(FileName, OldText, NewText: PAnsiChar; SkipLineNumbers: PAnsiChar; AllReplace: Boolean): Boolean; stdcall; external '..\source\XVMConfigEnNativePatcher.dll';
+function XCTextReplace(FileName, OldText, NewText: PAnsiChar; AllReplace: Boolean): Boolean; stdcall; external '..\source\XVMConfigEnNativeEditor.dll';
+function XCTextReplaceExt(FileName, OldText, NewText: PAnsiChar; SkipLineNumbers: PAnsiChar; AllReplace: Boolean): Boolean; stdcall; external '..\source\XVMConfigEnNativeEditor.dll';
 
 begin
 //=================== Example 1: Simple replacement ===================
@@ -35,5 +35,5 @@ XCTextReplaceExt(PChar(ExtractFilePath(ParamStr(0))+'xvm.xc'),
         ''+#13#10+
         '    "showPostmortemTips": false'),
   PChar('[2]'),
-  False);
+  False);  
 end.

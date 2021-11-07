@@ -11,69 +11,73 @@ unit FastShareMem;
 interface
 
 var
-  GetAllocMemCount: function: integer;
-  GetAllocMemSize : function: integer;
+  GetAllocMemCount: function: Integer;
+  GetAllocMemSize : function: Integer;
 
 implementation
 
 uses Windows;
 
-const ClassName  = '_com.codexterity.fastsharemem.dataclass';
+const ClassName = '_com.codexterity.fastsharemem.dataclass';
 
 type
   TFastSharememPack = record
     MemMgr: TMemoryManager;
-    _GetAllocMemSize  :function :integer;
-    _GetAllocMemCount :function :integer;
+    _GetAllocMemSize:  function: Integer;
+    _GetAllocMemCount: function: Integer;
   end;
 
   function _GetAllocMemCount: Integer;
   begin
-    Result := System.AllocMemCount;
+  Result:=System.AllocMemCount;
   end;
 
   function _GetAllocMemSize: Integer;
   begin
-    Result := System.AllocMemSize;
+  Result:=System.AllocMemSize;
   end;
 
-var
-  MemPack: TFastSharememPack;
-  OldMemMgr: TMemoryManager;
-  wc: TWndClass;
-  isHost: boolean;
+var MemPack: TFastSharememPack;
+    OldMemMgr: TMemoryManager;
+    WndClass: TWndClass;
+    isHost: Boolean;
 
 initialization
 
-  if (not GetClassInfo(HInstance, ClassName, wc)) then
+if not GetClassInfo(HInstance, ClassName, WndClass) then
+ begin
+ GetMemoryManager(MemPack.MemMgr);
+ MemPack._GetAllocMemCount:=@_GetAllocMemCount;
+ MemPack._GetAllocMemSize:=@_GetAllocMemSize;
+ GetAllocMemCount:=@_GetAllocMemCount;
+ GetAllocMemSize:=@_GetAllocMemSize;
+ FillChar(WndClass, SizeOf(WndClass), 0);
+ with WndClass do
   begin
-    GetMemoryManager(MemPack.MemMgr);
-    MemPack._GetAllocMemCount := @_GetAllocMemCount;
-    MemPack._GetAllocMemSize  := @_GetAllocMemSize;
-    GetAllocMemCount := @_GetAllocMemCount;
-    GetAllocMemSize  := @_GetAllocMemSize;
-    FillChar(wc, sizeof(wc), 0);
-    wc.lpszClassName := ClassName;
-    wc.style := CS_GLOBALCLASS;
-    wc.hInstance := hInstance;
-    wc.lpfnWndProc := @MemPack;
-    if RegisterClass(wc)=0 then
-    begin
-      MessageBox( 0, 'Shared Memory Allocator setup failed: Cannot register class.', 'FastShareMem', 0 );
-      Halt;
-    end;
-    isHost := true;
-  end else
-  begin
-    GetMemoryManager(OldMemMgr); // optional
-    SetMemoryManager(TFastSharememPack(wc.lpfnWndProc^).MemMgr);
-    GetAllocMemCount := TFastSharememPack(wc.lpfnWndProc^)._GetAllocMemCount;
-    GetAllocMemSize  := TFastSharememPack(wc.lpfnWndProc^)._GetAllocMemSize;
-    isHost := false;
+  lpszClassName:=ClassName;
+  style:=CS_GLOBALCLASS;
+  hInstance:=hInstance;
+  lpfnWndProc:=@MemPack;
   end;
+ if RegisterClass(WndClass)=0 then
+  begin
+  MessageBox(0, 'Shared Memory Allocator setup failed: Cannot register class.', 'FastShareMem', 0);
+  Halt;
+  end;
+ isHost:=True;
+ end
+else begin
+     GetMemoryManager(OldMemMgr); //Optional
+     SetMemoryManager(TFastSharememPack(WndClass.lpfnWndProc^).MemMgr);
+     GetAllocMemCount:=TFastSharememPack(WndClass.lpfnWndProc^)._GetAllocMemCount;
+     GetAllocMemSize:=TFastSharememPack(WndClass.lpfnWndProc^)._GetAllocMemSize;
+     isHost:=False;
+     end;
 
 finalization
-  if isHost then UnregisterClass(ClassName, HInstance)
-  else SetMemoryManager(OldMemMgr); // optional
+
+if isHost then
+     UnregisterClass(ClassName, HInstance)
+else SetMemoryManager(OldMemMgr); //Optional
 
 end.
